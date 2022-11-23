@@ -1,0 +1,15 @@
+[
+    {
+        "_id": "1",
+        "category": "oppo",
+        "title": "Electrical System",
+        "description": "Electrical System fdfdf dfddfs  ElectricalElectrical Electrical",
+        "img": "https://i.ibb.co/KzCG8qr/8888.jpg",
+        "resale_price": "20.00",
+        "original_price": "25.00",
+        "used": "2",
+        "number": "1",
+        "condition": "Excellent",
+        "location": "Dhaka"
+    }
+]
