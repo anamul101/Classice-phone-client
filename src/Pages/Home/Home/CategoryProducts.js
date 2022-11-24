@@ -8,9 +8,9 @@ const CategoryProducts = () => {
     return (
         <div className='mb-20'>
             <h1 className='text-4xl font-bold text-yellow-600 text-center'>{product.category}</h1>
-            <h1 className='text-2xl font-bold my-6 mx-12'>Number of Products: {products.length}</h1>
+            <h1 className='text-2xl font-bold my-6'>Number of Products: {products.length}</h1>
             <div className="divider"></div>
-            <div className='grid lg:grid-cols-3 gap-8 mx-12'>
+            <div className='grid lg:grid-cols-3 gap-8 '>
             {
                 products.map(product=><SingleProducts
                 key={product._id}
