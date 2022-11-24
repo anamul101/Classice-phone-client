@@ -13,7 +13,7 @@ const DisplayError = () => {
           <p className='text-red-600'>{error.statusText || error.message} <br /> 404</p>
           </h2>
           <p className='text-2xl font-semibold md:text-3xl mb-8'>
-            Sorry, we couldn't find this page.
+            Sorry, The page uou are looking for was not found....
           </p>
           <Link to='/'
             className='px-8 py-3 font-semibold rounded bg-gray-900 hover:bg-gray-700 text-gray-100'
