@@ -1,15 +1,92 @@
 [
-    {
-        "_id": "1",
-        "category": "oppo",
-        "title": "Electrical System",
-        "description": "Electrical System fdfdf dfddfs  ElectricalElectrical Electrical",
-        "img": "https://i.ibb.co/KzCG8qr/8888.jpg",
-        "resale_price": "20.00",
-        "original_price": "25.00",
-        "used": "2",
-        "number": "1",
-        "condition": "Excellent",
-        "location": "Dhaka"
-    }
+   {
+    "category": "oppo",
+    "products":[
+        {
+            "_id": "231",
+            "name": "OPPO F19 Pro",
+            "description": "Less time charging, more time enjoying. Watch 2.9 hours of YouTube on just a 5-minute charge.",
+            "img": "https://www.oppo.com/content/dam/oppo/product-asset-library/darwin/f19-pro-overview-v2/v1/assets/kv-south-africa-bg-7bcfde.jpg.webp",
+            "resale_price": "19000",
+            "original_price": "25000",
+            "used": "2",
+            "number": "1",
+            "condition": "Excellent",
+            "location": "Dhaka"
+        },
+        {
+            "_id": "431",
+            "name": "OPPO F19 Pro",
+            "description": "Less time charging, more time enjoying. Watch 2.9 hours of YouTube on just a 5-minute charge.",
+            "img": "https://www.oppo.com/content/dam/oppo/product-asset-library/darwin/f19-pro-overview-v2/v1/assets/kv-south-africa-bg-7bcfde.jpg.webp",
+            "resale_price": "19000",
+            "original_price": "25000",
+            "used": "3",
+            "number": "2",
+            "condition": "Excellent",
+            "location": "Dhaka"
+        }
+    ]
+   },
+   {
+    "category": "iphone",
+    "products":[
+        {
+            "_id": "236",
+            "name": "OPPO F19 Pro",
+            "description": "Less time charging, more time enjoying. Watch 2.9 hours of YouTube on just a 5-minute charge.",
+            "img": "https://www.oppo.com/content/dam/oppo/product-asset-library/darwin/f19-pro-overview-v2/v1/assets/kv-south-africa-bg-7bcfde.jpg.webp",
+            "resale_price": "19000",
+            "original_price": "25000",
+            "used": "2",
+            "number": "1",
+            "condition": "Excellent",
+            "location": "Dhaka"
+        },
+        {
+            "_id": "481",
+            "name": "OPPO F19 Pro",
+            "description": "Less time charging, more time enjoying. Watch 2.9 hours of YouTube on just a 5-minute charge.",
+            "img": "https://www.oppo.com/content/dam/oppo/product-asset-library/darwin/f19-pro-overview-v2/v1/assets/kv-south-africa-bg-7bcfde.jpg.webp",
+            "resale_price": "19000",
+            "original_price": "25000",
+            "used": "3",
+            "number": "2",
+            "condition": "Excellent",
+            "location": "Dhaka"
+        }
+    ]
+   },
+   {
+    "category": "realme",
+    "products":[
+        {
+            "_id": "531",
+            "name": "OPPO F19 Pro",
+            "description": "Less time charging, more time enjoying. Watch 2.9 hours of YouTube on just a 5-minute charge.",
+            "img": "https://www.oppo.com/content/dam/oppo/product-asset-library/darwin/f19-pro-overview-v2/v1/assets/kv-south-africa-bg-7bcfde.jpg.webp",
+            "resale_price": "19000",
+            "original_price": "25000",
+            "used": "2",
+            "number": "1",
+            "condition": "Excellent",
+            "location": "Dhaka"
+        },
+        {
+            "_id": "461",
+            "name": "OPPO F19 Pro",
+            "description": "Less time charging, more time enjoying. Watch 2.9 hours of YouTube on just a 5-minute charge.",
+            "img": "https://www.oppo.com/content/dam/oppo/product-asset-library/darwin/f19-pro-overview-v2/v1/assets/kv-south-africa-bg-7bcfde.jpg.webp",
+            "resale_price": "19000",
+            "original_price": "25000",
+            "used": "3",
+            "number": "2",
+            "condition": "Excellent",
+            "location": "Dhaka"
+        }
+    ]
+   }
+    
+    
+    
 ]
