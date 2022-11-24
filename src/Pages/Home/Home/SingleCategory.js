@@ -7,7 +7,7 @@ const SingleCategory = ({categorys}) => {
     return (
         <div>
            <Link to={`/categoryproducts/${_id}`}>
-                <h1 className='text-3xl font-bold mr-8'>{category}</h1>
+                <h1 className='text-3xl font-bold uppercase mr-8 hover:rounded-sm hover:bg-gray-300 p-3 hover:hover:text-blue-700 text-center'>{category}</h1>
            </Link>
         </div>
     );

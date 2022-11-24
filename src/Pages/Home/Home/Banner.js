@@ -11,11 +11,14 @@ const Banner = () => {
     >
         <div className="hero">
             <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className='mr-12'>
-                    <h1 className="text-5xl font-bold">Box Office News!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                <div className='lg:w-1/2 lg:ml-8 text-center lg:text-left'>
+                    <h1 className="text-xl lg:text-5xl font-bold">Welcome to Classice Phone Stor!</h1>
+                    <p className="py-6">The current age is full of challenges and uncertainty. To believe in “Inspiration Ahead” is to believe that the future is promising. Just as we encourage everyone to brave the difficulties, OPPO will stick to the right thing and never sacrifice quality for speed.</p>
+                    <button className="btn btn-wide">Explore Your Products</button>
                 </div>
-                <img src={banner1} className="rounded-lg lg:w-1/2 shadow-2xl" alt='' />
+                <div className='lg:w-1/2'>
+                <img src={banner1} className="rounded-lg shadow-2xl" alt='' />
+                </div>
             </div>
         </div>
     </section>

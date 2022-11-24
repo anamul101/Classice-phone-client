@@ -10,15 +10,16 @@ const SingleProducts = ({product}) => {
                 {name}
                 <div className="badge badge-secondary">Number: {number}</div>
                 </h2>
-                <p className='text-xl font-bold'>{location}</p>
+                <p className='text-xl font-semibold'>{location}</p>
                 <p>{description}</p>
+                <div className='flex justify-between'>
+                    <p>Condition: {condition}</p>
+                    <p>{used} Yers used </p>
+                </div>
                 <p>Resale Price: ${resale_price}</p>
                 <p>Original Price: ${original_price}</p>
-                <p>Phone Condition: {condition}</p>
-                <p>Used Product: {used}</p>
-                <div className="card-actions justify-end">
-                <div className="badge badge-outline">Fashion</div> 
-                <div className="badge badge-outline">Products</div>
+                <div className="mx-auto my-4">
+                    <button className="btn btn-wide">Buy Now</button>
                 </div>
             </div>
         </div>

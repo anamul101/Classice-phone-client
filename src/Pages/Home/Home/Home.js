@@ -1,4 +1,5 @@
 import React from 'react';
+import About from './About';
 import AdvertisedItems from './AdvertisedItems';
 import Banner from './Banner';
 import ProductCategories from './ProductCategories ';
@@ -7,8 +8,9 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <AdvertisedItems></AdvertisedItems>
             <ProductCategories></ProductCategories>
+            <AdvertisedItems></AdvertisedItems>
+            <About></About>
         </div>
     );
 };
