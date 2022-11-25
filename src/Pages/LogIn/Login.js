@@ -1,31 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const {signIn,forgetPassword}=useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const [passChang, setPassChang] = useState('');
+    const [createLoginEmail, setCreateLoginEmail]=useState('');
     const handleLogin = data => {
         console.log(data);
-        // setLoginError('');
-        // signIn(data.email, data.password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         setCreateLoginEmail(data.email)
-        //     })
-        //     .catch(error => {
-        //         console.log(error.message)
-        //         setLoginError(error.message);
-        //     });
+        setLoginError('');
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setCreateLoginEmail(data.email)
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message);
+            });
     }
     const handelaReset = ()=>{
-        // forgetPassword(passChang)
-        //   .then(()=>{
-        //     toast.success('Reset password for chack your email')
-        //   })
-        //   .catch(error=>toast.error(error))
+        forgetPassword(passChang)
+          .then(()=>{
+            toast.success('Reset password for chack your email')
+          })
+          .catch(error=>toast.error(error))
       }
 
     return (
