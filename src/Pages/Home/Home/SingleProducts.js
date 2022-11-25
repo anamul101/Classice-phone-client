@@ -1,7 +1,8 @@
+
 import React from 'react';
 
-const SingleProducts = ({product}) => {
-    const {name,description,resale_price,original_price,used,number,condition,location,img}=product;
+const SingleProducts = ({product,setBooking,currentTime}) => {
+    const {name,description,resale_price,original_price,used,number,condition,location,img,id}=product;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
         <figure><img src={img} alt="Shoes" /></figure>
@@ -18,8 +19,13 @@ const SingleProducts = ({product}) => {
                 </div>
                 <p>Resale Price: ${resale_price}</p>
                 <p>Original Price: ${original_price}</p>
-                <div className="mx-auto my-4">
-                    <button className="btn btn-wide">Buy Now</button>
+                <p>Time: {currentTime}</p>
+                <div className=" text-center">
+                <label 
+                htmlFor="booking-modal" 
+                className="btn btn-primary text-white"
+                onClick={()=>setBooking(product)}
+                >Book Product</label>
                 </div>
             </div>
         </div>

@@ -1,8 +1,21 @@
+// import { useQuery,queryKey,queryFn } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import SingleCategory from './SingleCategory';
 
 const ProductCategories  = () => {
     const [categories, setCategories] = useState([]);
+    // const {data:categories=[],isLoading,refetch} = useQuery({
+    //     queryKey:['category'],
+    //     queryFn:async ()=>{
+    //         const res = await fetch('http://localhost:5000/category');
+    //         const data = await res.json();
+    //         return data
+    //     }
+    
+    // })
+    // if(isLoading){
+    //     return <h1 className='text-2xl font-bold text-green-600 text-center my-12'>Loading...</h1>
+    // }
     useEffect(()=>{
         fetch('http://localhost:5000/category')
         .then(res=>res.json())
@@ -16,7 +29,7 @@ const ProductCategories  = () => {
                     <h1 className='text-center text-xl font-bold mb-4'>Please Selected Your best Phone</h1>
                     <div className='grid lg:grid-cols-3 lg:gap-6'>
                         {
-                        categories.map(categorys=><SingleCategory 
+                        categories?.map(categorys=><SingleCategory 
                             key={categorys._id}
                             categorys={categorys}
                         >

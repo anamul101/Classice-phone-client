@@ -3,11 +3,13 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import SocialLogin from '../Shareds/SocialLogin/SocialLogin';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUPError] = useState('');
+    // const [createUserEmail, setCreateUserEmail]=useState('');
 
     const handleSignUp = (data) => {
         console.log(data)
@@ -15,36 +17,37 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                toast.success('User Created Successfully.');
-                // const userInfo = {
-                //     displayName: data.name
-                // }
-                // updateUser(userInfo)
-                //     .then(() => { 
-                //         saveUser(data.name,data.email);
-                //     })
-                //     .catch(err => console.log(err));
+                
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUser(userInfo)
+                    .then(() => { 
+                        saveUser(data.name,data.email,data.role);
+                    })
+                    .catch(err => console.log(err));
             })
             .catch(error => {
                 console.log(error)
                 setSignUPError(error.message)
             });
     }
-    // const saveUser = (name,email)=>{
-    //     const user={name,email}
-    //     fetch('https://doctor-portal-server-ten-beta.vercel.app/users',{
-    //         method:'POST',
-    //         headers:{
-    //             "content-type":"application/json"
-    //         },
-    //         body:JSON.stringify(user)
-    //     })
-    //     .then(res=>res.json())
-    //     .then(data=>{
-    //         setCreateUserEmail(email);
-    //     })
-    // }
+    const saveUser = (name,email,role)=>{
+        const user={name,email,role}
+        fetch('http://localhost:5000/users',{
+            method:'POST',
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify(user)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            toast.success('User Created Successfully.');
+            // setCreateUserEmail(email);
+        })
+    }
     
     return (
         <div className='h-[700px] flex justify-center items-center'>
@@ -61,13 +64,12 @@ const SignUp = () => {
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Type of Account</span></label>
                         <select 
-                        {...register('account')}
+                        {...register('role')}
                         className="select input-bordered w-full max-w-xs">
-                            <option disabled selected>Chooch your account</option>
-                            <option>Buyer</option>
+                            <option disabled selected>Buyer</option>
                             <option>Seller</option>
                         </select>
-                    </div>
+                </div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Email</span></label>
                     <input type="email" {...register("email", {
@@ -89,7 +91,8 @@ const SignUp = () => {
             </form>
             <p className='my-4'>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
             <div className="divider">OR</div>
-            <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+            {/* <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button> */}
+            <SocialLogin></SocialLogin>
 
         </div>  
     </div>

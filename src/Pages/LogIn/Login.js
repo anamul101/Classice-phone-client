@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import SocialLogin from '../Shareds/SocialLogin/SocialLogin';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -65,7 +66,7 @@ const Login = () => {
             </form>
             <p className='my-4'>New to Classice Phone <Link className='text-secondary' to="/signup">Create new Account</Link></p>
             <div className="divider">OR</div>
-            <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+            <SocialLogin></SocialLogin>
         </div>
     </div>
     );
