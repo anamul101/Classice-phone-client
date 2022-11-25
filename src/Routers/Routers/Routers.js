@@ -3,7 +3,9 @@ import Main from "../../Layout/Main";
 import Blog from "../../Pages/Blog/Blog";
 import CategoryProducts from "../../Pages/Home/Home/CategoryProducts";
 import Home from "../../Pages/Home/Home/Home";
+import Login from "../../Pages/LogIn/Login";
 import DisplayError from "../../Pages/Shareds/DisplayError/DisplayError";
+import SignUp from "../../Pages/SignUp/SignUp";
 
 export const router = createBrowserRouter([
     {
@@ -18,6 +20,14 @@ export const router = createBrowserRouter([
             {
                 path:'/blog',
                 element:<Blog></Blog>
+            },
+            {
+                path:'/login',
+                element:<Login></Login>
+            },
+            {
+                path:'/signup',
+                element:<SignUp></SignUp>
             },
             {
                 path:'/categoryproducts/:id',
