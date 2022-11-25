@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import SocialLogin from '../Shareds/SocialLogin/SocialLogin';
 
@@ -11,6 +11,10 @@ const Login = () => {
     const [loginError, setLoginError] = useState('');
     const [passChang, setPassChang] = useState('');
     const [createLoginEmail, setCreateLoginEmail]=useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
     const handleLogin = data => {
         console.log(data);
         setLoginError('');
@@ -19,6 +23,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 setCreateLoginEmail(data.email)
+                navigate(from, {replace: true});
             })
             .catch(error => {
                 console.log(error.message)

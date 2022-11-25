@@ -6,6 +6,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/LogIn/Login";
 import DisplayError from "../../Pages/Shareds/DisplayError/DisplayError";
 import SignUp from "../../Pages/SignUp/SignUp";
+import PrivateRoute from "../PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
             {
                 path:'/categoryproducts/:id',
                 loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`),
-                element:<CategoryProducts></CategoryProducts>
+                element:<PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>
             }
         ]
     }

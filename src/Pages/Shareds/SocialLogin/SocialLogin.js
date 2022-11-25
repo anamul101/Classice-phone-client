@@ -10,15 +10,16 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 const SocialLogin = () => {
     const {authSignInGoogle,LogOut} = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
-    // const navigate = useNavigate()
-    // const location = useLocation();
-    // const from = location.state?.from?.pathname || '/';
+    const navigate = useNavigate()
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handelGoogle = ()=>{
         authSignInGoogle(googleProvider)
             .then((result)=>{
                 const user = result.user;
                 console.log(user);
+                navigate(from, {replace:true});
                 // const currentUser={
                 //     email: user.email
                 // }
