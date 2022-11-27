@@ -1,15 +1,21 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useToken from '../../Hooks/useToken';
 import SocialLogin from '../Shareds/SocialLogin/SocialLogin';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUPError] = useState('');
-    // const [createUserEmail, setCreateUserEmail]=useState('');
+    const [createUserEmail, setCreateUserEmail]=useState('');
+    const [token]=useToken(createUserEmail);
+    const navigate = useNavigate();
+    if(token){
+        navigate('/')
+    }
 
     const handleSignUp = (data) => {
         console.log(data)
@@ -45,7 +51,7 @@ const SignUp = () => {
         .then(data=>{
             console.log(data)
             toast.success('User Created Successfully.');
-            // setCreateUserEmail(email);
+            setCreateUserEmail(email);
         })
     }
     

@@ -9,7 +9,11 @@ const MyOrders = () => {
     const {data:bookings=[],refetch}=useQuery({
         queryKey:['bookings',user?.email],
         queryFn:async()=>{
-            const res= await fetch(url)
+            const res= await fetch(url,{
+                headers: {
+                  authorization: `bearer ${localStorage.getItem("accessToken")}`,
+                },
+              })
             const data = await res.json();
             return data;
         }
@@ -45,7 +49,7 @@ const MyOrders = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {
+                {bookings.length > 0 &&
                     bookings?.map((booking,i)=>
                     <tr>
                         <th>{i+1}</th>

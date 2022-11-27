@@ -1,46 +1,34 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import useToken from '../../../Hooks/useToken';
 
 
 
 const SocialLogin = () => {
     const {authSignInGoogle,LogOut} = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
+    const [createUserEmail, setCreateUserEmail]=useState('');
     const navigate = useNavigate()
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-
+    const [token]=useToken(createUserEmail);
+    if(token){
+        navigate(from, {replace: true});
+    }
     const handelGoogle = ()=>{
         authSignInGoogle(googleProvider)
             .then((result)=>{
                 const user = result.user;
                 console.log(user);
-                navigate(from, {replace:true});
-                // const currentUser={
-                //     email: user.email
-                // }
                 
-                // fetch('https://photography-studio-server.vercel.app/jwt',{
-                //     method:'POST',
-                //     headers:{
-                //         "content-type": "application/json"
-                //     },
-                //     body: JSON.stringify(currentUser)
-                // })
-                // .then(res=>{
-                //     if(res.status === 401 || res.status === 403){
-                //         LogOut();
-                //     }
-                //    return res.json()
-                // })
-                // .then(data=>{
-                //     localStorage.setItem('photography-token', data.token);
-                //     navigate(from, {replace:true});
-                // })
+                const currentUser={
+                    email: user.email
+                }
+                setCreateUserEmail(currentUser)
             })
             .catch(error=>{
                 toast.error(error.message);

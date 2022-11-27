@@ -2,12 +2,10 @@ import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Contexts/AuthProvider';
-import useSeller from '../Hooks/useSeller';
 import NavBar from '../Pages/Shareds/NavBar/NavBar';
 
 const DashboardLayout = () => {
     const {user} = useContext(AuthContext);
-    const [isSeller]=useSeller(user?.email)
     const dashbordMentu=<>
                 <li><Link to='/dashboard'>My Orders</Link></li>
                 <li><Link to='/dashboard/myproducts'>My Products</Link></li>
