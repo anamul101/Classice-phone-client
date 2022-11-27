@@ -6,6 +6,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 const AddProducts = () => {
     const {user}=useContext(AuthContext);
     const navigate=useNavigate()
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
     const handelService = (e)=>{
         e.preventDefault()
         const form = e.target;
@@ -21,36 +22,52 @@ const AddProducts = () => {
         const phoneNumber = form.phoneNumber.value;
         const description = form.description.value;
         const img = form.img.value;
-
-        const addaProduct={
-            category,
-            name,
-            description,
-            img,
-            condition,
-            location,
-            original_price,
-            resale_price,
-            used,
-            phoneNumber,
-            buyerName,
-            email
-        }
-        console.log(addaProduct)
-        fetch('http://localhost:5000/addproducts',{
-            method:'POST',
-            headers:{
-                "content-type":"application/json"
-            },
-            body:JSON.stringify(addaProduct)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.acknowledged){
-                toast.success('Booking Product succesful');
-                navigate('/dashboard/myproducts')
+        // console.log(img);
+        // const img = img.image[0];
+        const formData = new FormData();
+        console.log(formData)
+        formData.append('img', img);
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        }).then(res=>res.json())
+        .then(imgData =>{
+            console.log(imgData.url)
+            if(imgData.success){
+                
+                    const addaProduct={
+                        category,
+                        name,
+                        description,
+                        img:imgData.data.url,
+                        condition,
+                        location,
+                        original_price,
+                        resale_price,
+                        used,
+                        phoneNumber,
+                        buyerName,
+                        email
+                    }
+                // Add product mongodb
+                    fetch('http://localhost:5000/addproducts',{
+                        method:'POST',
+                        headers:{
+                            "content-type":"application/json"
+                        },
+                        body:JSON.stringify(addaProduct)
+                    })
+                    .then(res=>res.json())
+                    .then(data=>{
+                        if(data.acknowledged){
+                            toast.success('Booking Product succesful');
+                            navigate('/dashboard/myproducts')
+                        }
+                    })
             }
         })
+        
     }
     return (
         <div>
@@ -127,7 +144,7 @@ const AddProducts = () => {
                         <label className="label">
                             <span className="label-text">Service Image URL</span>
                             </label>
-                            <input type="text" name='img' className="input input-bordered w-full max-w-xs"/>
+                            <input type="file" name='img' className="input input-bordered w-full max-w-xs"/>
                         </div>
                </div>
                 <div className='w-full'>

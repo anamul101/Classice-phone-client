@@ -81,7 +81,7 @@ const AllBuyers = () => {
                                 <td>{buyer.role}</td>
                                 <td>
                                     <button onClick={()=>handelUpdate(buyer._id)} className='btn btn-sm'>Admin</button>
-                                    <button onClick={()=>handelBuyersDelete(buyer._id)} className='btn btn-sm ml-3'>Delete</button>
+                                    <button onClick={()=>handelBuyersDelete(buyer._id)} className="btn bg-red-600 hover:bg-red-700 border-red-600 hover:border-red-700 btn-sm ml-2">Delete</button>
                                 </td>
                             </tr>
                                 )
@@ -94,7 +94,7 @@ const AllBuyers = () => {
                                 <td>{buyer.role}</td>
                                 <td>
                                     <button onClick={()=>handelUpdate(buyer._id)} className='btn btn-sm'>Admin</button>
-                                    <button onClick={()=>handelBuyersDelete(buyer._id)} className='btn btn-sm ml-3'>Delete</button>
+                                    <button onClick={()=>handelBuyersDelete(buyer._id)} className="btn bg-red-600 hover:bg-red-700 border-red-600 hover:border-red-700 btn-sm ml-2">Delete</button>
                                 </td>
                             </tr>
                                 )

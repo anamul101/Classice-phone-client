@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const BookModal = ({booking,setBooking}) => {
     const {user}=useContext(AuthContext);
-    const {name,resale_price} = booking;
+    const {name,resale_price,img} = booking;
     const handelBooking=(e)=>{
         e.preventDefault();
         const form = e.target;
@@ -14,13 +14,15 @@ const BookModal = ({booking,setBooking}) => {
         const location=form.location.value;
         const phone=form.phone.value;
         const price=form.price.value;
+        const img=form.img.value;
         const bookingProduct ={
             buyerName,
             email,
             phone,
             location,
             productName:name,
-            price
+            price,
+            img
 
         }
         console.log(bookingProduct);
@@ -54,6 +56,7 @@ const BookModal = ({booking,setBooking}) => {
                     <input name='name' type="text" placeholder="Your name" defaultValue={user?.displayName} disabled className="input input-bordered input-sm w-full" />
                     <input name='email' type="email" placeholder="Email" defaultValue={user?.email} disabled className="input input-bordered input-sm w-full" />
                     <input name='price' type="text" placeholder="Resale Price"  defaultValue={resale_price} disabled className="input input-bordered input-sm w-full" />
+                    <input name='img' type="text" placeholder="Resale Price"  defaultValue={img} disabled className="input input-bordered input-sm w-full" />
                     <input name='location' type="text" placeholder="Enter Your Location" className="input input-bordered input-sm w-full" />
                     <input name='phone' type="text" placeholder="Phone" className="input input-bordered input-sm w-full" />
 

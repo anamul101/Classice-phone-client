@@ -21,7 +21,7 @@ const AdvertisedItems = () => {
                         <div className="card-body">
                             <h2 className="card-title">
                                 <p className='text-2xl font-bold'>{advertise.name}</p>
-                            <div className="badge badge-secondary">{advertise.role}</div>
+                            <div className="badge bg-green-600">{advertise.role}</div>
                             </h2>
                             <p className='font-bold'>Location:{advertise.location}</p>
                             <p className='font-bold'>Category:{advertise.category}</p>

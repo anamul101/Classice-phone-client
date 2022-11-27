@@ -18,6 +18,9 @@ const MyOrders = () => {
             return data;
         }
     })
+    const handlePayment=(id)=>{
+        console.log(id)
+    }
     const handelDelete = (id)=>{
         fetch(`http://localhost:5000/bookings/${id}`,{
             method:'DELETE'
@@ -34,41 +37,29 @@ const MyOrders = () => {
         <div>
             <h1 className='text-4xl font-semibold text-yellow-500 my-4 text-center'>My Orders</h1>
             <div className='divider'></div>
-            <div className="overflow-x-auto">
-            <table className="table w-full">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Products</th>
-                    <th>Location</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                {bookings.length > 0 &&
-                    bookings?.map((booking,i)=>
-                    <tr>
-                        <th>{i+1}</th>
-                        <td>{booking.buyerName}</td>
-                        <td>{booking.email}</td>
-                        <td>{booking.phone}</td>
-                        <td>{booking.productName}</td> 
-                        <td>{booking.location}</td> 
-                        <td>{booking.price}</td> 
-                        <td>
-                            <button onClick={()=>handelDelete(booking._id)} className='btn btn-sm mr-2'>Delete</button>    
-                            <button className='btn btn-sm'>Confirm</button>    
-                        </td> 
-                    </tr>
+            <div className='grid lg:grid-cols-3 gap-5'>
+                {
+                    bookings.map(booking=>
+                    <div className="lg:w-80 w-96 bg-base-100 shadow-xl rounded-xl">
+                    <figure><img className='rounded-md' src={booking.img} alt={booking.productName} /></figure>
+                    <div className="p-5">
+                      <h2 className="text-2xl font-bold mb-3">
+                        {booking.productName}
+                      </h2>
+                      <p className='font-bold'>Location: {booking.location}</p>
+                      <p className='font-bold'>Buyer Name: {booking.buyerName}</p>
+                      <p className='font-bold'>Email: {booking.email}</p>
+                      <p className='font-bold'>Buyer Number: {booking.phone}</p>
+                      <p className='font-bold'>Resale Price: ${booking.price}</p>
+                      <div className="card-actions justify-end mt-3">
+                      <button onClick={() => handlePayment(booking._id)} className='btn btn-secondary btn-sm'>Pay</button> 
+                        <div onClick={()=>handelDelete(booking._id)} className="btn bg-red-600 hover:bg-red-700 border-red-600 hover:border-red-700 btn-sm ml-2">Delete</div>
+                      </div>
+                    </div>
+                  </div>
                     )
                 }
-                </tbody>
-            </table>
-        </div>
+            </div>
     </div>
     );
 };

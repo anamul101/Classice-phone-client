@@ -55,7 +55,7 @@ const SingleCard = ({addproduct,refetch}) => {
                 {
                      (addproduct?.role === 'available')
                      ?
-                     <button className='btn btn-primary btn-sm'>ADVERTIZE RUN</button>
+                     <button className='btn bg-green-600 hover:bg-green-700 hover:border-green-600 border-green-600 btn-sm'>Advertise Ruing</button>
                      :
                      <button onClick={() => handleAvailable(addproduct?._id)} className='btn btn-secondary btn-sm'>Available</button>
                 }
