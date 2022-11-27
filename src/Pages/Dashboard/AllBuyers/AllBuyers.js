@@ -1,10 +1,107 @@
-import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const AllBuyers = () => {
+    const {user} = useContext(AuthContext)
+    // const [allBuyers, setAllBuyers]=useState([]);
+    // console.log(allBuyers)
+    // useEffect(()=>{
+    //     fetch(`http://localhost:5000/users?role=Buyer`)
+    //     .then(res=>res.json())
+    //     .then(data=>setAllBuyers(data))
+    // },[])
+    const url = ("http://localhost:5000/users?role=Buyer")
+    const {data:allBuyers=[]}=useQuery({
+        queryKey:['allBuyers'],
+        queryFn:async()=>{
+            const res= await fetch(url)
+            const data = await res.json();
+            return data;
+        }
+    })
+    const {data:allAdmin=[],refetch}=useQuery({
+        queryKey:['allAdmin'],
+        queryFn:async()=>{
+            const res= await fetch("http://localhost:5000/users?role=admin")
+            const data = await res.json();
+            return data;
+        }
+    })
+    const handelBuyersDelete=(id)=>{
+        fetch(`http://localhost:5000/users/${id}`,{
+            method:'DELETE'
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.deletedCount > 0){
+                toast.success(`User has been Deleted`);
+                refetch();
+            }
+        })
+    }
+    const handelUpdate=(id)=>{
+        console.log(id)
+        fetch(`http://localhost:5000/users/${id}`,{
+            method:'PUT',
+            // headers:{
+            //     authorization:`bearer ${localStorage.getItem('accessToken')}`
+            // }
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.modifiedCount > 0){
+                toast.success('Make Admin Succesful');
+                refetch();
+            }
+        })
+    }
     return (
         <div>
             <h1 className='text-4xl font-semibold text-yellow-500 my-4 text-center'>All Buyers</h1>
             <div className='divider'></div>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
+                    <thead>
+                    <tr>
+                        <th>Seller Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            allBuyers?.map((buyer)=>
+                            <tr>
+                                <td>{buyer.name}</td>
+                                <td>{buyer.email}</td>
+                                <td>{buyer.role}</td>
+                                <td>
+                                    <button onClick={()=>handelUpdate(buyer._id)} className='btn btn-sm'>Admin</button>
+                                    <button onClick={()=>handelBuyersDelete(buyer._id)} className='btn btn-sm ml-3'>Delete</button>
+                                </td>
+                            </tr>
+                                )
+                        }
+                        {
+                            allAdmin?.map((buyer)=>
+                            <tr>
+                                <td>{buyer.name}</td>
+                                <td>{buyer.email}</td>
+                                <td>{buyer.role}</td>
+                                <td>
+                                    <button onClick={()=>handelUpdate(buyer._id)} className='btn btn-sm'>Admin</button>
+                                    <button onClick={()=>handelBuyersDelete(buyer._id)} className='btn btn-sm ml-3'>Delete</button>
+                                </td>
+                            </tr>
+                                )
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
