@@ -13,10 +13,8 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/LogIn/Login";
 import DisplayError from "../../Pages/Shareds/DisplayError/DisplayError";
 import SignUp from "../../Pages/SignUp/SignUp";
-import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute";
-import BuyerRoute from "../SellerRoute/BuyerRoute/BuyerRoute";
-import SellerRoute from "../SellerRoute/SellerRoute";
+
 
 export const router = createBrowserRouter([
     {
@@ -42,7 +40,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/categoryproducts/:id',
-                loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`),
+                loader:({params})=>fetch(`https://classic-phone-server.vercel.app/category/${params.id}`),
                 element:<PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>
             }
         ]
@@ -54,24 +52,24 @@ export const router = createBrowserRouter([
         children:[
             {
                 path:'/dashboard',
-                element:<BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+                element:<MyOrders></MyOrders>
             },
         
             {
                 path:'/dashboard/addproducts',
-                element:<SellerRoute><AddProducts></AddProducts></SellerRoute>
+                element:<AddProducts></AddProducts>
             },
             {
                 path:'/dashboard/myproducts',
-                element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
+                element:<MyProducts></MyProducts>
             },
             {
                 path:'/dashboard/allsellers',
-                element:<AdminRoute><AllSellers></AllSellers></AdminRoute>
+                element:<AllSellers></AllSellers>
             },
             {
                 path:'/dashboard/allbuyers',
-                element:<AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+                element:<AllBuyers></AllBuyers>
             }
         ]
     }

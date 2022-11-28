@@ -5,7 +5,7 @@ const AdvertisedItems = () => {
     const {data:addProducts=[]}=useQuery({
         queryKey:['addProducts'],
         queryFn:async()=>{
-            const res= await fetch('http://localhost:5000/allproducts/advatise?role=available');
+            const res= await fetch('https://classic-phone-server.vercel.app/allproducts/advatise?role=available');
             const data = await res.json();
             return data;
         }

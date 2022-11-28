@@ -8,11 +8,11 @@ const AllBuyers = () => {
     // const [allBuyers, setAllBuyers]=useState([]);
     // console.log(allBuyers)
     // useEffect(()=>{
-    //     fetch(`http://localhost:5000/users?role=Buyer`)
+    //     fetch(`https://classic-phone-server.vercel.app/users?role=Buyer`)
     //     .then(res=>res.json())
     //     .then(data=>setAllBuyers(data))
     // },[])
-    const url = ("http://localhost:5000/users?role=Buyer")
+    const url = ("https://classic-phone-server.vercel.app/users?role=Buyer")
     const {data:allBuyers=[]}=useQuery({
         queryKey:['allBuyers'],
         queryFn:async()=>{
@@ -24,13 +24,13 @@ const AllBuyers = () => {
     const {data:allAdmin=[],refetch}=useQuery({
         queryKey:['allAdmin'],
         queryFn:async()=>{
-            const res= await fetch("http://localhost:5000/users?role=admin")
+            const res= await fetch("https://classic-phone-server.vercel.app/users?role=admin")
             const data = await res.json();
             return data;
         }
     })
     const handelBuyersDelete=(id)=>{
-        fetch(`http://localhost:5000/users/${id}`,{
+        fetch(`https://classic-phone-server.vercel.app/users/${id}`,{
             method:'DELETE'
         })
         .then(res=>res.json())
@@ -43,7 +43,7 @@ const AllBuyers = () => {
     }
     const handelUpdate=(id)=>{
         console.log(id)
-        fetch(`http://localhost:5000/users/admin/${id}`,{
+        fetch(`https://classic-phone-server.vercel.app/users/admin/${id}`,{
             method:'PUT',
             // headers:{
             //     authorization:`bearer ${localStorage.getItem('accessToken')}`

@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const MyOrders = () => {
     const {user}=useContext(AuthContext)
-    const url = (`http://localhost:5000/bookings?email=${user?.email}`)
+    const url = (`https://classic-phone-server.vercel.app/bookings?email=${user?.email}`)
     const {data:bookings=[],refetch,isLoading}=useQuery({
         queryKey:['bookings',user?.email],
         queryFn:async()=>{
@@ -22,7 +22,7 @@ const MyOrders = () => {
         console.log(id)
     }
     const handelDelete = (id)=>{
-        fetch(`http://localhost:5000/bookings/${id}`,{
+        fetch(`https://classic-phone-server.vercel.app/bookings/${id}`,{
             method:'DELETE'
         })
         .then(res=>res.json())

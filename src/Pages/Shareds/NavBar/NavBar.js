@@ -11,9 +11,9 @@ const NavBar = () => {
             .catch(err => console.log(err));
     }
     const menuItems = <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/blog">Blog</Link></li>
-        <li><Link to="/login">Login</Link></li>
+        <li className='rounded-md mr-2'><Link to="/">Home</Link></li>
+        <li className='rounded-md mr-2'><Link to="/blog">Blog</Link></li>
+        <li className='rounded-md mr-2'><Link to="/login">Login</Link></li>
         {user?.uid ?
             <>
                 <li><Link to="/dashboard">Dashboard</Link></li>

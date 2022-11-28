@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
 const AllSellers = () => {
-    const url = ("http://localhost:5000/users?role=Seller")
+    const url = ("https://classic-phone-server.vercel.app/users?role=Seller")
     const {data:allSellers=[]}=useQuery({
         queryKey:['allSellers'],
         queryFn:async()=>{
@@ -14,13 +14,13 @@ const AllSellers = () => {
     const {data:allAdmin=[],refetch}=useQuery({
         queryKey:['allAdmin'],
         queryFn:async()=>{
-            const res= await fetch("http://localhost:5000/users?role=admin")
+            const res= await fetch("https://classic-phone-server.vercel.app/users?role=admin")
             const data = await res.json();
             return data;
         }
     })
     const handelSellerDelete=(id)=>{
-        fetch(`http://localhost:5000/users/${id}`,{
+        fetch(`https://classic-phone-server.vercel.app/users/${id}`,{
             method:'DELETE'
         })
         .then(res=>res.json())
@@ -33,7 +33,7 @@ const AllSellers = () => {
     }
     const handelUpdate=(id)=>{
         console.log(id)
-        fetch(`http://localhost:5000/users/admin/${id}`,{
+        fetch(`https://classic-phone-server.vercel.app/users/admin/${id}`,{
             method:'PUT',
             // headers:{
             //     authorization:`bearer ${localStorage.getItem('accessToken')}`
@@ -50,7 +50,7 @@ const AllSellers = () => {
     }
     const handelvarify=(id)=>{
         console.log(id)
-        fetch(`http://localhost:5000/users/${id}`,{
+        fetch(`https://classic-phone-server.vercel.app/users/${id}`,{
             method:'PUT',
         })
         .then(res=>res.json())

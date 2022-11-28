@@ -6,7 +6,7 @@ const SingleCard = ({addproduct,refetch}) => {
     const {category,_id,name,description,image,condition,location,original_price,resale_price,used,phoneNumber}=addproduct;
         const navigate=useNavigate()
     const handleAvailable=(id)=>{
-        fetch(`http://localhost:5000/addproducts/${id}`,{
+        fetch(`https://classic-phone-server.vercel.app/addproducts/${id}`,{
             method:'PUT',
         })
         .then(res=>res.json())
@@ -19,7 +19,7 @@ const SingleCard = ({addproduct,refetch}) => {
         })
     }
     const handelDelete=(id)=>{
-        fetch(`http://localhost:5000/addproducts/${id}`,{
+        fetch(`https://classic-phone-server.vercel.app/addproducts/${id}`,{
             method:'DELETE'
         })
         .then(res=>res.json())

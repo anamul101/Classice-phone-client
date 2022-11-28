@@ -7,7 +7,7 @@ const ProductCategories  = () => {
     // const {data:categories=[],isLoading,refetch} = useQuery({
     //     queryKey:['category'],
     //     queryFn:async ()=>{
-    //         const res = await fetch('http://localhost:5000/category');
+    //         const res = await fetch('https://classic-phone-server.vercel.app/category');
     //         const data = await res.json();
     //         return data
     //     }
@@ -17,7 +17,7 @@ const ProductCategories  = () => {
     //     return <h1 className='text-2xl font-bold text-green-600 text-center my-12'>Loading...</h1>
     // }
     useEffect(()=>{
-        fetch('http://localhost:5000/category')
+        fetch('https://classic-phone-server.vercel.app/category')
         .then(res=>res.json())
         .then(data=>setCategories(data))
     },[])
