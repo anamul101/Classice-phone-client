@@ -43,7 +43,7 @@ const AllBuyers = () => {
     }
     const handelUpdate=(id)=>{
         console.log(id)
-        fetch(`http://localhost:5000/users/${id}`,{
+        fetch(`http://localhost:5000/users/admin/${id}`,{
             method:'PUT',
             // headers:{
             //     authorization:`bearer ${localStorage.getItem('accessToken')}`
@@ -80,6 +80,7 @@ const AllBuyers = () => {
                                 <td>{buyer.email}</td>
                                 <td>{buyer.role}</td>
                                 <td>
+                                    
                                     <button onClick={()=>handelUpdate(buyer._id)} className='btn btn-sm'>Admin</button>
                                     <button onClick={()=>handelBuyersDelete(buyer._id)} className="btn bg-red-600 hover:bg-red-700 border-red-600 hover:border-red-700 btn-sm ml-2">Delete</button>
                                 </td>

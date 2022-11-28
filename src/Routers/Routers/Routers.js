@@ -13,7 +13,10 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/LogIn/Login";
 import DisplayError from "../../Pages/Shareds/DisplayError/DisplayError";
 import SignUp from "../../Pages/SignUp/SignUp";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute";
+import BuyerRoute from "../SellerRoute/BuyerRoute/BuyerRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 export const router = createBrowserRouter([
     {
@@ -51,24 +54,24 @@ export const router = createBrowserRouter([
         children:[
             {
                 path:'/dashboard',
-                element:<MyOrders></MyOrders>
+                element:<BuyerRoute><MyOrders></MyOrders></BuyerRoute>
             },
         
             {
                 path:'/dashboard/addproducts',
-                element:<AddProducts></AddProducts>
+                element:<SellerRoute><AddProducts></AddProducts></SellerRoute>
             },
             {
                 path:'/dashboard/myproducts',
-                element:<MyProducts></MyProducts>
+                element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path:'/dashboard/allsellers',
-                element:<AllSellers></AllSellers>
+                element:<AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path:'/dashboard/allbuyers',
-                element:<AllBuyers></AllBuyers>
+                element:<AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             }
         ]
     }

@@ -33,7 +33,7 @@ const AllSellers = () => {
     }
     const handelUpdate=(id)=>{
         console.log(id)
-        fetch(`http://localhost:5000/users/${id}`,{
+        fetch(`http://localhost:5000/users/admin/${id}`,{
             method:'PUT',
             // headers:{
             //     authorization:`bearer ${localStorage.getItem('accessToken')}`
@@ -44,6 +44,20 @@ const AllSellers = () => {
             console.log(data)
             if(data.modifiedCount > 0){
                 toast.success('Make Admin Succesful');
+                refetch();
+            }
+        })
+    }
+    const handelvarify=(id)=>{
+        console.log(id)
+        fetch(`http://localhost:5000/users/${id}`,{
+            method:'PUT',
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.modifiedCount > 0){
+                toast.success('Seller verification successful');
                 refetch();
             }
         })
@@ -70,7 +84,15 @@ const AllSellers = () => {
                                 <td>{seller.email}</td>
                                 <td>{seller.role}</td>
                                 <td>
-                                    <button onClick={()=>handelUpdate(seller._id)} className='btn btn-sm'>Admin</button>
+                                {
+                     (seller?.verify === 'verify')
+                     ?
+                        <button className='btn btn-ghost btn-sm'>✔️</button>
+                     :
+                     <button onClick={()=>handelvarify(seller._id)} className='btn btn-primary btn-sm'>Verify</button>
+                }
+                                    
+                                    <button onClick={()=>handelUpdate(seller._id)} className='btn btn-sm ml-3'>Admin</button>
                                     <button onClick={()=>handelSellerDelete(seller._id)} className="btn bg-red-600 hover:bg-red-700 border-red-600 hover:border-red-700 btn-sm ml-2">Delete</button>
                                 </td>
                             </tr>

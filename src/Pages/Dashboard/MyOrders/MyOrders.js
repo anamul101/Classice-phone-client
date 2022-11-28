@@ -6,7 +6,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 const MyOrders = () => {
     const {user}=useContext(AuthContext)
     const url = (`http://localhost:5000/bookings?email=${user?.email}`)
-    const {data:bookings=[],refetch}=useQuery({
+    const {data:bookings=[],refetch,isLoading}=useQuery({
         queryKey:['bookings',user?.email],
         queryFn:async()=>{
             const res= await fetch(url,{
@@ -33,13 +33,17 @@ const MyOrders = () => {
             }
         })
     }
+    if(isLoading){
+      return <p>Please wait data is proccecing</p>
+    }
     return (
         <div>
             <h1 className='text-4xl font-semibold text-yellow-500 my-4 text-center'>My Orders</h1>
             <div className='divider'></div>
             <div className='grid lg:grid-cols-3 gap-5'>
                 {
-                    bookings.map(booking=>
+                  bookings.length >0 &&
+                    bookings?.map(booking=>
                     <div className="lg:w-80 w-96 bg-base-100 shadow-xl rounded-xl">
                     <figure><img className='rounded-md' src={booking.img} alt={booking.productName} /></figure>
                     <div className="p-5">
