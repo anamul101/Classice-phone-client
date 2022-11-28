@@ -17,7 +17,7 @@ const AdvertisedItems = () => {
                 {
                     addProducts?.map(advertise=>
                         <div className="border rounded-md w-[700px] bg-base-100 shadow-xl">
-                        <figure><img className='w-full' src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                        <figure><img className='w-full' src={advertise.image} alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">
                                 <p className='text-2xl font-bold'>{advertise.name}</p>
@@ -31,10 +31,6 @@ const AdvertisedItems = () => {
                             <p className='mb-0'>Resale Price{advertise.resale_price}</p>
                             <p className='mb-0'>Year of Used: {advertise.used}</p>
                             <p className='mb-0'>Mobile Number: {advertise.phoneNumber}</p>
-                            <div className='flex w-1/2 flex-col text-left'>
-                                <p className='font-bold'>Name:{advertise.buyerName}</p>
-                                <p className='font-bold'>Email:{advertise.email}</p>
-                            </div>
                         </div>
                         </div>
                         )

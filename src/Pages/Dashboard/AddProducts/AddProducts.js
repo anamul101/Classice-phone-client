@@ -1,55 +1,46 @@
 import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const AddProducts = () => {
     const {user}=useContext(AuthContext);
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+      } = useForm();
+    
     const navigate=useNavigate()
     const imageHostKey = process.env.REACT_APP_imgbb_key;
-    const handelService = (e)=>{
-        e.preventDefault()
-        const form = e.target;
-        const buyerName=form.buyerName.value;
-        const email=form.email.value;
-        const name = form.name.value;
-        const condition = form.condition.value;
-        const original_price = form.original_price.value;
-        const resale_price = form.resale_price.value;
-        const location = form.location.value;
-        const used = form.used.value;
-        const category = form.category.value;
-        const phoneNumber = form.phoneNumber.value;
-        const description = form.description.value;
-        const img = form.img.value;
-        // console.log(img);
-        // const img = img.image[0];
+    const handelService = (data)=>{
+        const image = data.image[0];
+        console.log(image)
         const formData = new FormData();
         console.log(formData)
-        formData.append('img', img);
+        formData.append('image', image);
         const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
         fetch(url, {
             method: 'POST',
             body: formData
         }).then(res=>res.json())
         .then(imgData =>{
-            console.log(imgData.url)
+        
             if(imgData.success){
-                
-                    const addaProduct={
-                        category,
-                        name,
-                        description,
-                        img:imgData.data.url,
-                        condition,
-                        location,
-                        original_price,
-                        resale_price,
-                        used,
-                        phoneNumber,
-                        buyerName,
-                        email
-                    }
+                const addaProduct={
+                        name: data.name,
+                        condition: data.condition,
+                        original_price: data.original_price,
+                        resale_price: data.resale_price,
+                        location: data.location,
+                        used: data.used,
+                        category: data.category,
+                        image: imgData.data.url,
+                        description: data.description,
+                        phoneNumber: data.phoneNumber,
+                      
+                }
                 // Add product mongodb
                     fetch('http://localhost:5000/addproducts',{
                         method:'POST',
@@ -73,91 +64,81 @@ const AddProducts = () => {
         <div>
             <h1 className='text-4xl font-semibold text-yellow-500 my-4 text-center'>Add A Products</h1>
             <div className='divider'></div>
-            <form onSubmit={handelService} className="form-control lg:w-[700px] rounded-md p-4 border-orange-700 border">
-               <div className='grid lg:grid-cols-2 lg:gap-4'>
-                        <div>
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input type="text" name='buyerName' disabled defaultValue={user?.displayName} readOnly className="input input-bordered w-full max-w-xs" required/>
-                        </div>
-                        <div>
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input type="email" name='email' disabled defaultValue={user?.email} readOnly className="input input-bordered w-full max-w-xs" required/>
-                        </div>
-                        <div>
-                            <label className="label">
-                                <span className="label-text">Product Name</span>
-                            </label>
-                            <input type="text" name='name' className="input input-bordered w-full max-w-xs" required/>
-                        </div>
-                        <div className="form-control w-full max-w-xs">
-                        <label className="label">
-                            <span className="label-text">Conditions</span>
-                        </label>
-                        <select name='condition'
-                        className="select input-bordered w-full max-w-xs">
-                            <option>Excellent</option>
-                            <option>Good</option>
-                            <option>Fair</option>
-                        </select>
-                        </div>
-                        <div>
-                        <label className="label">
-                            <span className="label-text">Original price</span>
-                            </label>
-                            <input type="text" name='original_price' className="input input-bordered w-full max-w-xs" required/>
-                        </div>
-                        <div>
-                        <label className="label">
-                            <span className="label-text">Resale price</span>
-                            </label>
-                            <input type="text" name='resale_price' className="input input-bordered w-full max-w-xs" required/>
-                        </div>
-                        <div>
-                        <label className="label">
-                            <span className="label-text">Location</span>
-                            </label>
-                            <input type="text" name='location' className="input input-bordered w-full max-w-xs" required/>
-                        </div>
-                        <div>
-                        <label className="label">
-                            <span className="label-text"> Year of purchase</span>
-                            </label>
-                            <input type="text" name='used' className="input input-bordered w-full max-w-xs" required/>
-                        </div>
-                        <div>
-                        <label className="label">
-                            <span className="label-text">Category</span>
-                            </label>
-                            <input type="text" name='category' className="input input-bordered w-full max-w-xs" required/>
-                        </div>
-                        <div>
-                        <label className="label">
-                            <span className="label-text">Mobile Number (Optional)</span>
-                            </label>
-                            <input type="text" name='phoneNumber' className="input input-bordered w-full max-w-xs"/>
-                        </div>
-                        <div>
-                        <label className="label">
-                            <span className="label-text">Service Image URL</span>
-                            </label>
-                            <input type="file" name='img' className="input input-bordered w-full max-w-xs"/>
-                        </div>
-               </div>
-                <div className='w-full'>
-                    <label className="label">
-                        <span className="label-text">Product Details (Optional)</span>
-                    </label>
-                    <textarea className="textarea textarea-warning w-full h-25" name='description'></textarea>
-                </div>
-                <div className="form-control ">
-                    <input className="btn btn-warning hover:bg-orange-500 mt-4" type="submit" value="Add Your Product" />
-                </div>
-            </form> 
+        <form onSubmit={handleSubmit(handelService)} className="text-center lg:w-[700px] rounded-md p-4 border-orange-700 border">
+        <div className='grid lg:grid-cols-2 gap-5'>
+        <div>
+          <label className="label">Product Name</label>
+          <input type="text" {...register("name", {required: "Product name is required!",})}className="input input-bordered w-full"/>
+          {errors?.name && (
+            <p className="text-red-600">{errors?.name.message}</p>
+          )}
         </div>
+        <div>
+          <label className="label">Phone Number</label>
+          <input type="text" {...register("phoneNumber")}className="input input-bordered w-full"/>
+        </div>
+        <div>
+          <label className="label">Original price</label>
+          <input type="text" {...register("original_price")}className="input input-bordered w-full"/>
+        </div>
+        <div>
+          <label className="label">Resale price</label>
+          <input type="text" {...register("resale_price")}className="input input-bordered w-full"/>
+        </div>
+        <div>
+          <label className="label">Location</label>
+          <input type="text" {...register("location")} className="input input-bordered w-full"/>
+        </div>
+
+        <div>
+          <label className="label">Year Of purchase</label>
+          <input type="text" {...register("used")} className="input input-bordered w-full"/>
+        </div>
+     <div className='flex justify-between'>
+     <div>
+          <label className="label">Phone Condition </label>
+          <select 
+                {...register('condition')}
+                className="select input-bordered w-full max-w-xs">
+                <option disabled selected>Exsellent</option>
+                <option>Good</option>
+                <option>Fair</option>
+            </select>
+        </div>
+        <div>
+          <label className="label">Selected Category</label>
+          <select 
+                {...register('category')}
+                className="select input-bordered w-full max-w-xs">
+                <option disabled selected>oppo</option>
+                <option>iphone</option>
+                <option>realme</option>
+            </select>
+        </div>
+     </div>
+        <div>
+          <label className="label">Photo</label>
+          <input
+            type="file"
+            {...register("image")}
+            className="input input-bordered w-full"
+          />
+        </div>
+        </div>
+        <div>
+          <label className="label">Description</label>
+
+          <textarea
+            type="text"
+            {...register("description")}className="textarea textarea-bordered w-full"></textarea>
+        </div>
+        <input
+          type="submit"
+          value="Add Product"
+          className="btn btn-warning hover:bg-orange-500 lg:w-full mt-4 text-white"
+        />
+      </form>
+    </div>
     );
 };
 

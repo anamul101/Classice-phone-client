@@ -3,8 +3,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const SingleCard = ({addproduct,refetch}) => {
-    const {category,_id,name,description,img,condition,location,original_price,resale_price,used,phoneNumber,
-        buyerName,email}=addproduct;
+    const {category,_id,name,description,image,condition,location,original_price,resale_price,used,phoneNumber}=addproduct;
         const navigate=useNavigate()
     const handleAvailable=(id)=>{
         fetch(`http://localhost:5000/addproducts/${id}`,{
@@ -33,7 +32,7 @@ const SingleCard = ({addproduct,refetch}) => {
     }
     return (
         <div className=" w-[500px] bg-base-100 border rounded-md">
-        <figure><img className='w-full' src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+        <figure><img className='w-full' src={image} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title flex justify-between">
                 <p className='text-2xl font-bold'>{name}</p>
@@ -46,10 +45,6 @@ const SingleCard = ({addproduct,refetch}) => {
                 <p className='mb-0'>Resale Price{resale_price}</p>
                 <p className='mb-0'>Year of Used: {used}</p>
                 <p className='mb-0'>Mobile Number: {phoneNumber}</p>
-                <div className='flex w-1/2 flex-col text-left'>
-                    <p className='font-bold'>Name:{buyerName}</p>
-                    <p className='font-bold'>Email:{email}</p>
-                </div>
                 <div className="card-actions justify-end">
                 
                 {
