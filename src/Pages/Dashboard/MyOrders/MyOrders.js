@@ -19,7 +19,17 @@ const MyOrders = () => {
         }
     })
     const handlePayment=(id)=>{
-        console.log(id)
+      fetch(`http://localhost:5000/bookings/${id}`,{
+        method:'PUT',
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        if(data.modifiedCount > 0){
+            toast.success('Payment Successfully');
+            refetch(); 
+        }
+    })
     }
     const handelDelete = (id)=>{
         fetch(`https://classic-phone-server.vercel.app/bookings/${id}`,{
@@ -29,7 +39,7 @@ const MyOrders = () => {
         .then(data=>{
             if(data.deletedCount > 0){
                 toast.success('Product has been Deleted');
-                refetch();
+               refetch(); 
             }
         })
     }
@@ -56,7 +66,13 @@ const MyOrders = () => {
                       <p className='font-bold'>Buyer Number: {booking.phone}</p>
                       <p className='font-bold'>Resale Price: ${booking.price}</p>
                       <div className="card-actions justify-end mt-3">
-                      <button onClick={() => handlePayment(booking._id)} className='btn btn-secondary btn-sm'>Pay</button> 
+                      {
+                     (booking?.paid === 'paid')
+                     ?
+                     <button disabled className='btn bg-green-600 hover:bg-green-700 hover:border-green-600 border-green-600 btn-sm text-black'>Paid</button>
+                     :
+                     <button onClick={() => handlePayment(booking?._id)} className='btn btn-secondary btn-sm'>Pay</button>
+                      }
                         <div onClick={()=>handelDelete(booking._id)} className="btn bg-red-600 hover:bg-red-700 border-red-600 hover:border-red-700 btn-sm ml-2">Delete</div>
                       </div>
                     </div>

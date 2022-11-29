@@ -19,6 +19,7 @@ const Login = () => {
     const [token]=useToken(createLoginEmail)
     if(token){
         navigate(from, {replace: true});
+        toast.success(' Your Login Successfull')
     }
 
     const handleLogin = data => {

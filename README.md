@@ -1,3 +1,20 @@
+# Website Name: Classice Phone
+## This website is developed for resale products.
+## Live Link: https://classice-phone-dc43a.web.app/
+
+# Admin Login
+
+# How to Create in This website
+## Tecnology: React, Firebase, MongoDB, NodeJs,Express,Vercel,Tailwiend CSS,DaisyUI,React Hook Form,React Hot Toast, Moment, Reacte Router Dom, React Icons etc.
+
+## In this website I designed with five router.
+1.In the 1st there is a home page where we can see advertising of product and product category sections are available. <br>
+2.In the 2nd there is five router named as My order, My product, Add product, All seller and All buyer sections are available. <br>
+3.In the 3rd I implemented login, logout and social login activities.<br>
+4.In the 4th admin can changes the seller verifications and delete product item from the page.<br>
+5.At the final page admin can changes or add seller or buyer to admin panel.<br>  
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
