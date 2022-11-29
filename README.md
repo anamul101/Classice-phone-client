@@ -3,6 +3,9 @@
 ## Live Link: https://classice-phone-dc43a.web.app/
 
 # Admin Login
+## Admin Email: rjanamul01871@gmail.com
+## Password:Rjanamul01871@gmail.com
+
 
 # How to Create in This website
 ## Technology: React, Firebase, MongoDB, NodeJs,Express,Vercel,Tailwiend CSS,DaisyUI,React Hook Form,React Hot Toast, Moment, Reacte Router Dom, React Icons etc.
