@@ -13,10 +13,10 @@ const AdvertisedItems = () => {
     return (
         <div className='my-20'>
             <h1 className='text-4xl font-bold text-yellow-500 text-center'>Advertised</h1>
-            <div className='grid lg:grid-cols-2 lg:gap-6 mt-8'>
+            <div className='grid lg:grid-cols-3 lg:gap-4 mt-8'>
                 {
                     addProducts?.map(advertise=>
-                        <div className="border rounded-md w-[700px] bg-base-100 shadow-xl">
+                        <div className="border rounded-md w-[420px] bg-base-100 shadow-xl">
                         <figure><img className='w-full' src={advertise.image} alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">

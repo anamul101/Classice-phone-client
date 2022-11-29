@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import Loading from '../../Components/Loading';
 
 const MyOrders = () => {
     const {user}=useContext(AuthContext)
@@ -19,7 +20,7 @@ const MyOrders = () => {
         }
     })
     const handlePayment=(id)=>{
-      fetch(`http://localhost:5000/bookings/${id}`,{
+      fetch(`https://classic-phone-server.vercel.app/bookings/${id}`,{
         method:'PUT',
     })
     .then(res=>res.json())
@@ -44,7 +45,9 @@ const MyOrders = () => {
         })
     }
     if(isLoading){
-      return <p>Please wait data is proccecing</p>
+      return  <>
+      <p className='text-center mt-20 font-bold text-xl text-green-600'>Please wait data is proccecing</p>
+      </>
     }
     return (
         <div>

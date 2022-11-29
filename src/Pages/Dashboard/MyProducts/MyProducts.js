@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import Loading from '../../Components/Loading';
 import SingleCard from './SingleCard';
 
 const MyProducts = () => {
-    const {data:addProducts=[],refetch}=useQuery({
+    const {data:addProducts=[],refetch,isLoading}=useQuery({
         queryKey:['addProducts'],
         queryFn:async()=>{
             const res= await fetch('https://classic-phone-server.vercel.app/addproducts');
@@ -11,7 +12,9 @@ const MyProducts = () => {
             return data;
         }
     });
-
+    if(isLoading){
+        return <Loading></Loading>
+    }
     return (
         <div>
             <h1 className='text-4xl font-semibold text-yellow-500 my-4 text-center'>My Products</h1>

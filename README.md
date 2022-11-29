@@ -5,7 +5,7 @@
 # Admin Login
 
 # How to Create in This website
-## Tecnology: React, Firebase, MongoDB, NodeJs,Express,Vercel,Tailwiend CSS,DaisyUI,React Hook Form,React Hot Toast, Moment, Reacte Router Dom, React Icons etc.
+## Technology: React, Firebase, MongoDB, NodeJs,Express,Vercel,Tailwiend CSS,DaisyUI,React Hook Form,React Hot Toast, Moment, Reacte Router Dom, React Icons etc.
 
 ## In this website I designed with five router.
 1.In the 1st there is a home page where we can see advertising of product and product category sections are available. <br>
