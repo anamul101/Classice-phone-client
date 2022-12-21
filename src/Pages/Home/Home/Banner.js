@@ -7,10 +7,10 @@ const Banner = () => {
         <div className="hero">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className='lg:w-1/2 lg:ml-8 text-center lg:text-left'>
-                    <h1 className="text-xl lg:text-5xl font-bold">Welcome to Classice Phone Store!</h1>
+                    <h1 className="text-xl lg:text-5xl font-bold">Welcome to <br /> <p className='text-xl lg:text-5xl font-bold'>Classice Phone Store!</p></h1>
                     <p className="py-6">The current age is full of challenges and uncertainty. To believe in “Inspiration Ahead” is to believe that the future is promising. Just as we encourage everyone to brave the difficulties, OPPO will stick to the right thing and never sacrifice quality for speed.</p>
                     <Link to='/dashboard/addproducts'>
-                        <button className="btn btn-secondary">Add a Products</button>
+                        <button className="btn btn-warning">Add a Products</button>
                     </Link>
                 </div>
                 <div className='lg:w-1/2'>

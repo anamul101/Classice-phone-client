@@ -1,17 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { AuthContext } from '../../../Contexts/AuthProvider';
+
 
 const AllBuyers = () => {
-    const {user} = useContext(AuthContext)
-    // const [allBuyers, setAllBuyers]=useState([]);
-    // console.log(allBuyers)
-    // useEffect(()=>{
-    //     fetch(`https://classic-phone-server.vercel.app/users?role=Buyer`)
-    //     .then(res=>res.json())
-    //     .then(data=>setAllBuyers(data))
-    // },[])
+    
     const url = ("https://classic-phone-server.vercel.app/users?role=Buyer")
     const {data:allBuyers=[]}=useQuery({
         queryKey:['allBuyers'],
