@@ -1,9 +1,11 @@
 import React from 'react';
 import aboutpic from '../../../assets/banner/aboutpic.jpg'
+import { Fade,Slide,Flip,Zoom } from "react-awesome-reveal";
 
 const About = () => {
     return (
-        <div className="hero my-12 bg-base-200">
+        <Slide>
+            <div className="hero my-12 bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <img src={aboutpic} className="max-w-sm rounded-lg shadow-2xl" alt='iphone' />
                 <div className='mt-4 lg:mt-0'>
@@ -13,7 +15,9 @@ const About = () => {
                     <p>That’s why we’re here, and why we’ve carefully curated this list of all the best smartphones we’ve ever reviewed. We get through dozens and dozens of phones every year, from feature-packed flagships to budget handsets and everything in between, our expert team has plenty of experience.</p>
                 </div>
             </div>
-        </div>
+            </div>
+        </Slide>
+        
     );
 };
 

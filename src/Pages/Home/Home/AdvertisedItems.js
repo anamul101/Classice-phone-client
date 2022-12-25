@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Fade,Slide,Flip,Zoom } from "react-awesome-reveal";
 
 const AdvertisedItems = () => {
     const {data:addProducts=[]}=useQuery({
@@ -13,6 +14,7 @@ const AdvertisedItems = () => {
     return (
         <div className='my-20'>
             <h1 className='text-4xl font-bold text-yellow-500 text-center'>Advertised</h1>
+            <Zoom>
             <div className='grid lg:grid-cols-3 lg:gap-4 mt-8'>
                 {
                     addProducts?.map(advertise=>
@@ -36,6 +38,8 @@ const AdvertisedItems = () => {
                         )
                 }
             </div>
+            </Zoom>
+          
         </div>
     );
 };
