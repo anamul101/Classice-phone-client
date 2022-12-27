@@ -4,6 +4,7 @@ import AdvertisedItems from './AdvertisedItems';
 import Banner from './Banner';
 import Contact from './Contact';
 import CustomerReview from './CustomerReview';
+import LatestBlog from './LatestBlog';
 import ProductCategories from './ProductCategories ';
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
             <AdvertisedItems></AdvertisedItems>
             <About></About>
             <CustomerReview></CustomerReview>
+            <LatestBlog></LatestBlog>
             <Contact></Contact>
         </div>
     );
